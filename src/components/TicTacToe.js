@@ -8,10 +8,11 @@ import './TicTacToe.scss';
 
 let TicTacToeContainer = React.createClass({
   getInitialState() {
-    let ticTacToeStore = TicTacToeStore.getState();
+    let ticTacToeStoreState = TicTacToeStore.getState();
     return {
-      gameBoard: ticTacToeStore.gameBoard,
-      turn: ticTacToeStore.turn
+      gameBoard: ticTacToeStoreState.gameBoard,
+      turn: ticTacToeStoreState.turn,
+      winner: ticTacToeStoreState.winner
     };
   },
 
@@ -22,7 +23,8 @@ let TicTacToeContainer = React.createClass({
   onChange(state) {
     this.setState({
       gameBoard: state.gameBoard,
-      turn: state.turn
+      turn: state.turn,
+      winner: state.winner
     })
   },
 
@@ -30,7 +32,10 @@ let TicTacToeContainer = React.createClass({
     return (
       <AltContainer store={TicTacToeStore}>
         <div>
-          <TicTacToe gameBoard={this.state.gameBoard} turn={this.state.turn} />
+          <TicTacToe
+            gameBoard={this.state.gameBoard}
+            turn={this.state.turn}
+            winner={this.state.winner} />
         </div>
       </AltContainer>
     )
@@ -41,7 +46,7 @@ let TicTacToe = React.createClass({
   checkWinner(selectedSquare) {
     let lastMove = selectedSquare.turn;
     let gameBoard = this.props.gameBoard;
-    var countMatchRow = 0,
+    let countMatchRow = 0,
       countMatchColumn = 0,
       countMatchDiagonal = 0,
       countMatchDiagonal2 = 0;
@@ -81,6 +86,7 @@ let TicTacToe = React.createClass({
       countMatchDiagonal === 5 || countMatchDiagonal2 === 5
     ) {
       console.info('WINNER!', lastMove);
+      TicTacToeActions.declareWinner(lastMove);
     }
 
   },
@@ -129,6 +135,9 @@ let TicTacToe = React.createClass({
       <div className="TicTacToe">
         <div className="TicTacToe-turn">
           It is {turn}'s turn.
+        </div>
+        <div>
+          Winner: {this.props.winner}
         </div>
         <div className="TicTacToe-gameBoard">
           <ul>

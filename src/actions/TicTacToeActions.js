@@ -4,7 +4,8 @@ class TicTacToeActions {
   constructor() {
     this.generateActions(
       'getAllGames',
-      'createGame'
+      'createGame',
+      'declareWinner'
     );
   }
 

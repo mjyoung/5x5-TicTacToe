@@ -10,12 +10,13 @@ class TicTacToeStore {
       [null, null, null, null, null],
       [null, null, null, null, null]
     ];
-
     this.turn = 'o';
+    this.winner = '';
 
     this.bindListeners({
       handleUpdateGameBoard: TicTacToeActions.UPDATE_GAME_BOARD,
-      handleUpdateTurn: TicTacToeActions.UPDATE_TURN
+      handleUpdateTurn: TicTacToeActions.UPDATE_TURN,
+      handleDeclareWinner: TicTacToeActions.DECLARE_WINNER
     });
   }
 
@@ -25,6 +26,10 @@ class TicTacToeStore {
 
   handleUpdateTurn(nextTurn) {
     this.setState({turn: nextTurn});
+  }
+
+  handleDeclareWinner(winner) {
+    this.setState({winner:  winner})
   }
 }
 
