@@ -20,12 +20,10 @@ class TicTacToeStore {
   }
 
   handleUpdateGameBoard(gameBoard) {
-    console.info('handleUpdateGameBoard');
     this.setState({gameBoard: gameBoard});
   }
 
   handleUpdateTurn(nextTurn) {
-    console.info('handleUpdateTurn');
     this.setState({turn: nextTurn});
   }
 }
