@@ -29,7 +29,16 @@ $boxLength: 75px;
         display: flex;
         justify-content: center;
         align-items: center;
+        font-size: 24px;
+        font-weight: 900;
+        margin: 5px;
       }
     }
+  }
+  &-square--x {
+    color: $mshRed;
+  }
+  &-square--o {
+    color: $mshBlue;
   }
 }

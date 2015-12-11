@@ -11,13 +11,24 @@ class TicTacToeStore {
       [null, 'X', null, null, null]
     ];
 
+    this.turn = 'o';
+
     this.bindListeners({
-      handleUpdateGameBoard: TicTacToeActions.UPDATE_GAME_BOARD
+      handleUpdateGameBoard: TicTacToeActions.UPDATE_GAME_BOARD,
+      handleNextTurn: TicTacToeActions.NEXT_TURN
     });
   }
 
   handleUpdateGameBoard(gameBoard) {
     this.gameBoard = gameBoard;
+  }
+
+  handleNextTurn() {
+    if (this.turn === 'o') {
+      this.turn = 'x';
+    } else {
+      this.turn = 'o';
+    }
   }
 }
 
