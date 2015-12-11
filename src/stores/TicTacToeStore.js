@@ -12,12 +12,18 @@ class TicTacToeStore {
     ];
     this.turn = 'o';
     this.winner = '';
+    this.currentGame = null;
 
     this.bindListeners({
+      handleSetCurrentGame: TicTacToeActions.SET_CURRENT_GAME,
       handleUpdateGameBoard: TicTacToeActions.UPDATE_GAME_BOARD,
       handleUpdateTurn: TicTacToeActions.UPDATE_TURN,
       handleDeclareWinner: TicTacToeActions.DECLARE_WINNER
     });
+  }
+
+  handleSetCurrentGame(uuid) {
+    this.setState({currentGame: uuid});
   }
 
   handleUpdateGameBoard(gameBoard) {

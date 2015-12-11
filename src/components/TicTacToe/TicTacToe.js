@@ -20,6 +20,10 @@ const TicTacToeContainer = React.createClass({
     };
   },
 
+  componentWillMount() {
+    TicTacToeActions.setCurrentGame(this.props.routeParams.gameId);
+  },
+
   componentDidMount() {
     TicTacToeStore.listen(this.onChange);
   },

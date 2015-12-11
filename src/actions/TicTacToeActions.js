@@ -5,7 +5,8 @@ class TicTacToeActions {
     this.generateActions(
       'getAllGames',
       'createGame',
-      'declareWinner'
+      'declareWinner',
+      'setCurrentGame'
     );
   }
 

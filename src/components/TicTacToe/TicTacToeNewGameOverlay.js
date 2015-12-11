@@ -5,10 +5,6 @@ import { Link } from 'react-router';
 import './TicTacToeNewGameOverlay.scss';
 
 const TicTacToeNewGameOverlay = React.createClass({
-  componentDidMount() {
-    console.log('NEW GAME OVERLAY');
-  },
-
   render() {
     let newGameLink = 'games/' + uuid.v4();
     return (
