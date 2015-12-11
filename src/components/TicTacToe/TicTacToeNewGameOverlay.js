@@ -8,9 +8,6 @@ const TicTacToeNewGameOverlay = React.createClass({
   },
 
   render() {
-    const buttonStyles = {
-      background: 'red'
-    };
     return (
       <div className="TicTacToeNewGameOverlay">
         <div className="TicTacToeNewGameOverlay-container">
