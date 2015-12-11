@@ -1,6 +1,7 @@
 import React from 'react';
 import AltContainer from 'alt-container';
 import TicTacToeStore from '../stores/TicTacToeStore.js';
+import TicTacToeActions from '../actions/TicTacToeActions.js';
 import _ from 'lodash';
 
 import './TicTacToe.scss';
@@ -15,8 +16,16 @@ let TicTacToeContainer = React.createClass({
   },
 
   componentDidMount() {
+    TicTacToeStore.listen(this.onChange);
     console.log(this.props);
     console.log(this.state);
+  },
+
+  onChange(state) {
+    this.setState({
+      gameBoard: state.gameBoard,
+      turn: state.turn
+    })
   },
 
   render() {
@@ -31,6 +40,14 @@ let TicTacToeContainer = React.createClass({
 });
 
 let TicTacToe = React.createClass({
+  handleSquareClick(ev) {
+    //console.log(ev.currentTarget);
+    //console.log(ev.currentTarget.dataset.location);
+    //console.log(ev.currentTarget.dataset.turn);
+    //console.log(ev);
+    TicTacToeActions.nextTurn();
+  },
+
   render() {
     let gameBoard = this.props.gameBoard;
     let turn = this.props.turn;
@@ -44,7 +61,7 @@ let TicTacToe = React.createClass({
         } else if (val === 'O') {
           squareClassName = 'TicTacToe-square--o';
         }
-        gameBoardRowsHtml.push(<li className={squareClassName} key={key} data-location={key}>{val}</li>);
+        gameBoardRowsHtml.push(<li className={squareClassName} key={key} data-location={key} data-turn={turn} onClick={this.handleSquareClick}>{val}</li>);
       }).value();
     }).value();
     return (

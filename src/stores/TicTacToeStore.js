@@ -24,11 +24,13 @@ class TicTacToeStore {
   }
 
   handleNextTurn() {
+    console.log('handleNextTurn');
     if (this.turn === 'o') {
-      this.turn = 'x';
+      this.setState({ turn: 'x'});
     } else {
-      this.turn = 'o';
+      this.setState({ turn: 'o'});
     }
+    console.log(this.turn);
   }
 }
 
