@@ -22,7 +22,7 @@ ReactDOM.render(
     <Route path='/' name='root' component={App}>
       <IndexRoute component={TicTacToeContainer} status='none' />
       <Route path='stats' name='stats' component={StatsContainer} />
-      <Route path='game/:gameId' name='game' component={TicTacToeContainer} />
+      <Route path='games/:gameId' name='games' component={TicTacToeContainer} />
     </Route>
   </Router>
   , document.getElementById('app-container'));
