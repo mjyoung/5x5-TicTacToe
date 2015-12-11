@@ -29,11 +29,13 @@
   "dependencies": {
     "alt": "^0.18.1",
     "alt-container": "^1.0.0",
+    "firebase": "^2.3.2",
     "history": "^1.13.1",
     "lodash": "^3.10.1",
     "node-uuid": "^1.4.7",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-router": "^1.0.2"
+    "react-router": "^1.0.2",
+    "reactfire": "^0.5.1"
   }
 }
