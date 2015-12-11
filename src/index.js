@@ -9,7 +9,7 @@ import {
 } from 'react-router';
 import uuid from 'node-uuid';
 
-import TicTacToeContainer from './components/TicTacToe.js';
+import TicTacToeContainer from './components/TicTacToe/TicTacToe.js';
 import StatsContainer from './components/Stats/Stats.js';
 import './styles/resets.scss';
 
@@ -22,11 +22,3 @@ ReactDOM.render(
     <Route path=":gameId" component={TicTacToeContainer} />
   </Router>
   , document.getElementById('app'));
-
-
-/**
- * TODO: Tests
- * TODO: Firebase to track win/loss and previous games
- * TODO: MSH styles
- * TODO: Sass
- */
