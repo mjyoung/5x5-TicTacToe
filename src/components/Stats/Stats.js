@@ -2,7 +2,7 @@ import React from 'react';
 import AltContainer from 'alt-container';
 import TicTacToeStore from '../../stores/TicTacToeStore.js';
 
-let StatsContainer = React.createClass({
+const StatsContainer = React.createClass({
   getInitialState() {
     let ticTacToeStoreState = TicTacToeStore.getState();
     return {
@@ -23,7 +23,7 @@ let StatsContainer = React.createClass({
   }
 });
 
-let Stats = React.createClass({
+const Stats = React.createClass({
   render() {
     return (
       <div className="Stats">

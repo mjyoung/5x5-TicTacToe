@@ -9,7 +9,7 @@ import uuid from 'node-uuid';
 
 import './TicTacToe.scss';
 
-let TicTacToeContainer = React.createClass({
+const TicTacToeContainer = React.createClass({
   getInitialState() {
     let ticTacToeStoreState = TicTacToeStore.getState();
     return {
@@ -45,7 +45,7 @@ let TicTacToeContainer = React.createClass({
   }
 });
 
-let TicTacToe = React.createClass({
+const TicTacToe = React.createClass({
   mixins: [ReactFireMixin],
 
   componentWillMount() {
