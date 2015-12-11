@@ -1,0 +1,26 @@
+@import '../../styles/colors';
+
+.Sidebar {
+  color: $mshBlack;
+  &-header {
+    padding-top: 20px;
+    padding-left: 20px;
+    cursor: default;
+  }
+  &-subheader {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    color: darken($mshBlue, 10%);
+    cursor: default;
+  }
+  &-menuItem {
+    span {
+      color: $mshBlack;
+      text-decoration: none;
+    }
+    &:hover {
+      background-color: $mshOrange;
+    }
+  }
+}

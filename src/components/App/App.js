@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router';
+import Sidebar from '../Sidebar/Sidebar.js';
+
+import './App.scss';
 
 const App = React.createClass({
   render() {
     return (
-      <div>
-        <h1>App</h1>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="stats">Stats</Link></li>
-        </ul>
-        {this.props.children}
+      <div className="App">
+        <Sidebar />
+        <div className="App-content">
+          {this.props.children}
+        </div>
       </div>
     )
   }

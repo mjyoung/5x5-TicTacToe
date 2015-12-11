@@ -20,10 +20,10 @@ console.log(uuid.v4());
 
 ReactDOM.render(
   <Router history={createBrowserHistory()}>
-    <Route path="/"component={App}>
+    <Route path="/" name="root" component={App}>
       <IndexRoute component={Home} />
       <Route path="stats" name="stats" component={StatsContainer} />
       <Route path="game/:gameId" name="game" component={TicTacToeContainer} />
     </Route>
   </Router>
-  , document.getElementById('app'));
+  , document.getElementById('app-container'));
