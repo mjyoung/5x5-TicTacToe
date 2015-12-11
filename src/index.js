@@ -2,6 +2,15 @@
 import React from 'react';
 /*eslint-enable no-unused-vars */
 import ReactDOM from 'react-dom';
-import App from './App';
+import TicTacToe from './components/TicTacToe.js';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import './styles/resets.scss';
+
+ReactDOM.render(<TicTacToe />, document.getElementById('root'));
+
+/**
+ * TODO: Tests
+ * TODO: Firebase to track win/loss and previous games
+ * TODO: MSH styles
+ * TODO: Sass
+ */

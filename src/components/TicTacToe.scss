@@ -1,0 +1,35 @@
+@import '../styles/colors';
+
+/////////////////////
+//// Tic Tac Toe ////
+/////////////////////
+
+$gameBoardLength: 450px;
+$boxLength: 75px;
+
+.TicTacToe {
+  height: 100%;
+  &-gameBoard {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    ul {
+      display: flex;
+      flex-flow: row wrap;
+      width: $gameBoardLength;
+      height: $gameBoardLength;
+      justify-content: space-between;
+      li {
+        border: 1px solid $mshBlack;
+        border-radius: 5px;
+        width: $boxLength;
+        height: $boxLength;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

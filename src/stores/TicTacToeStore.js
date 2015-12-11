@@ -3,7 +3,13 @@ import TicTacToeActions from '../actions/TicTacToeActions.js';
 
 class TicTacToeStore {
   constructor() {
-    this.gameBoard = ['M', 'S', 'X', 'B'];
+    this.gameBoard = [
+      [null, 'X', null, 'O', null],
+      [null, 'X', null, null, null],
+      [null, 'X', 'O', null, null],
+      ['O', 'X', null, null, 'O'],
+      [null, 'X', null, null, null]
+    ];
 
     this.bindListeners({
       handleUpdateGameBoard: TicTacToeActions.UPDATE_GAME_BOARD
