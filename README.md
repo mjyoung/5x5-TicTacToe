@@ -48,4 +48,5 @@
 - MSH colors/styles
 - UX Design
 - Separate development/prod webpack configs
+- Make responsive
 - and of course... refactor code

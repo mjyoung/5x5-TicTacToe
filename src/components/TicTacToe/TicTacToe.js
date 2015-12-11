@@ -2,6 +2,7 @@ import React from 'react';
 import AltContainer from 'alt-container';
 import TicTacToeStore from '../../stores/TicTacToeStore.js';
 import TicTacToeActions from '../../actions/TicTacToeActions.js';
+import TicTacToeNewGameOverlay from './TicTacToeNewGameOverlay.js';
 import _ from 'lodash';
 import Firebase from 'firebase';
 import ReactFireMixin from 'reactfire';
@@ -32,9 +33,14 @@ const TicTacToeContainer = React.createClass({
   },
 
   render() {
+    let ticTacToeNewGameOverlay;
+    if (this.props.route.status === 'none') {
+      ticTacToeNewGameOverlay = <TicTacToeNewGameOverlay />;
+    }
     return (
       <AltContainer store={TicTacToeStore}>
         <div>
+          {ticTacToeNewGameOverlay}
           <TicTacToe
             gameBoard={this.state.gameBoard}
             turn={this.state.turn}
@@ -54,8 +60,7 @@ const TicTacToe = React.createClass({
   },
 
   componentDidMount() {
-    console.log(this.state, 'asdasdsadsadsad');
-    console.log(this.props);
+    console.info('TicTacToe props', this.props);
   },
 
   checkWinner(selectedSquare) {

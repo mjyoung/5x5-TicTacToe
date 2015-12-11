@@ -14,7 +14,11 @@ const Sidebar = React.createClass({
       fontFamily: '"Droid Sans", Helvetica, sans-serif'
     };
 
-    const header = <h1 className="Sidebar-header">Tic Tac Toe</h1>;
+    const header = <h1 className="Sidebar-header">
+      <span className="Sidebar-header--black">Tic</span>
+      <span className="Sidebar-header--red">Tac</span>
+      <span className="Sidebar-header--blue">Toe</span>
+    </h1>;
 
     return (
       <div className="Sidebar">

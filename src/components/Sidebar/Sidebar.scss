@@ -5,7 +5,22 @@
   &-header {
     padding-top: 20px;
     padding-left: 20px;
+    padding-bottom: 30px;
     cursor: default;
+    font-size: 28px;
+    span {
+      margin-right: 7px;
+    }
+    &--black {
+      color: $mshBlack;
+    }
+    &--red {
+      color: $mshRed;
+    }
+    &--blue {
+      color: $mshBlue;
+    }
+
   }
   &-subheader {
     padding-top: 10px;
@@ -20,7 +35,10 @@
       text-decoration: none;
     }
     &:hover {
-      background-color: $mshOrange;
+      background-color: $lightGray;
+      span {
+        color: $mshRed;
+      }
     }
   }
 }

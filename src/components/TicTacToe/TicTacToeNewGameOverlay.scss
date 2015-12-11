@@ -1,0 +1,39 @@
+@import '../../styles/colors';
+
+.TicTacToeNewGameOverlay {
+  &-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+  }
+  &-modal {
+    color: $mshBlack;
+    width: 300px;
+    height: 200px;
+    background: $mshBlue;
+    border-radius: 15px;
+    transform: translate(400px, 200px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &-button {
+    line-height: 35px;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 7px;
+    background: $mshOrange;
+    transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    box-shadow: 4px 4px 2px lighten($mshBlack, 20%);
+    &:hover {
+      background: darken($mshOrange, 15%);
+    }
+  }
+}
