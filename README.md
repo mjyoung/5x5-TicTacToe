@@ -21,6 +21,26 @@
 - SCSS
 - ESLint
 
+### Directory Structure
+
+```
+/src
+    - /actions
+    - /components
+        - /ComponentName
+            - ComponentName.js
+            - ComponentName.scss
+    - /stores
+    - /styles (shared/global styles)
+        - colors.scss
+        - resets.scss
+    - index.js (entry point, routes definitions)
+```
+
+### Other Notes
+
+- Using the Block-Element-Modifier (BEM) naming convention for CSS classes
+
 ### TODO
 - Implement Firebase as a BaaS (partially implemented -- currently saving completed game boards)
 - Tests -- unit tests with mocha/chai, functional tests with mocha/casperjs
