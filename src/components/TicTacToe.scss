@@ -35,6 +35,9 @@ $boxLength: 75px;
       }
     }
   }
+  &-square {
+    text-transform: uppercase;
+  }
   &-square--x {
     color: $mshRed;
   }

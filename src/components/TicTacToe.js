@@ -17,8 +17,6 @@ let TicTacToeContainer = React.createClass({
 
   componentDidMount() {
     TicTacToeStore.listen(this.onChange);
-    console.log(this.props);
-    console.log(this.state);
   },
 
   onChange(state) {
@@ -40,12 +38,17 @@ let TicTacToeContainer = React.createClass({
 });
 
 let TicTacToe = React.createClass({
-  handleSquareClick(ev) {
-    //console.log(ev.currentTarget);
-    //console.log(ev.currentTarget.dataset.location);
-    //console.log(ev.currentTarget.dataset.turn);
-    //console.log(ev);
-    TicTacToeActions.nextTurn();
+  handleSquareClick (ev) {
+    if (ev.currentTarget.dataset.val) {
+      return;
+    }
+    let selectedSquare = {
+      row: ev.currentTarget.dataset.row,
+      column: ev.currentTarget.dataset.column,
+      turn: this.props.turn
+    };
+    TicTacToeActions.updateGameBoard(this.props.gameBoard, selectedSquare);
+    TicTacToeActions.updateTurn(this.props.turn);
   },
 
   render() {
@@ -55,13 +58,21 @@ let TicTacToe = React.createClass({
     _(gameBoard).forEach((row, rowIndex) => {
       _(row).forEach((val, valIndex) => {
         let key = [rowIndex, valIndex];
-        let squareClassName = 'TicTacToe-square--empty';
-        if (val === 'X') {
-          squareClassName = 'TicTacToe-square--x';
-        } else if (val === 'O') {
-          squareClassName = 'TicTacToe-square--o';
+        let squareClassName = 'TicTacToe-square TicTacToe-square--empty';
+        if (val === 'x') {
+          squareClassName = 'TicTacToe-square TicTacToe-square--x';
+        } else if (val === 'o') {
+          squareClassName = 'TicTacToe-square TicTacToe-square--o';
         }
-        gameBoardRowsHtml.push(<li className={squareClassName} key={key} data-location={key} data-turn={turn} onClick={this.handleSquareClick}>{val}</li>);
+        gameBoardRowsHtml.push(
+          <li className={squareClassName}
+              key={key}
+              data-row={rowIndex}
+              data-column={valIndex}
+              data-val={val}
+              onClick={this.handleSquareClick}>
+            {val}
+          </li>);
       }).value();
     }).value();
     return (
