@@ -102,7 +102,9 @@ let TicTacToe = React.createClass({
     ) {
       console.info('WINNER!', lastMove);
       this.firebaseRefs.game.set({
-        game: this.props.gameBoard
+        gameBoard: this.props.gameBoard,
+        winner: lastMove,
+        status: 'finished'
       });
       TicTacToeActions.declareWinner(lastMove);
     }
