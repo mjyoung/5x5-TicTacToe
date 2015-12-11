@@ -5,6 +5,7 @@ import TicTacToeActions from '../actions/TicTacToeActions.js';
 import _ from 'lodash';
 import Firebase from 'firebase';
 import ReactFireMixin from 'reactfire';
+import uuid from 'node-uuid';
 
 import './TicTacToe.scss';
 
@@ -48,8 +49,8 @@ let TicTacToe = React.createClass({
   mixins: [ReactFireMixin],
 
   componentWillMount() {
-    let ref = new Firebase('https://myoung-tic-tac-toe.firebaseio.com/games');
-    this.bindAsArray(ref, 'games');
+    let ref = new Firebase('https://myoung-tic-tac-toe.firebaseio.com/games/' + uuid.v4());
+    this.bindAsObject(ref, 'game');
   },
 
   componentDidMount() {
@@ -100,7 +101,7 @@ let TicTacToe = React.createClass({
       countMatchDiagonal === 5 || countMatchDiagonal2 === 5
     ) {
       console.info('WINNER!', lastMove);
-      this.firebaseRefs.games.push({
+      this.firebaseRefs.game.set({
         game: this.props.gameBoard
       });
       TicTacToeActions.declareWinner(lastMove);
