@@ -2,7 +2,7 @@
 
 ### How to run locally
 
-1. Clone down this repo.
+1. Clone down this repo
 2. `npm install`
 3. `npm start`
 4. Open browser to `http://localhost:1337/`
@@ -28,3 +28,4 @@
 - MSH colors/styles
 - UX Design
 - Separate development/prod webpack configs
+- and of course... refactor code
