@@ -15,7 +15,7 @@
 
 #### Frontend
 
-- React, React Router
+- React, React Router, Alt
 - Webpack with hot reloading
 - ES6 with Babel
 - SCSS
