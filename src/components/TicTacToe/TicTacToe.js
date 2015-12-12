@@ -6,7 +6,6 @@ import TicTacToeNewGameOverlay from './TicTacToeNewGameOverlay.js';
 import _ from 'lodash';
 import Firebase from 'firebase';
 import ReactFireMixin from 'reactfire';
-import uuid from 'node-uuid';
 
 import './TicTacToe.scss';
 
@@ -46,6 +45,7 @@ const TicTacToeContainer = React.createClass({
         <div>
           {ticTacToeNewGameOverlay}
           <TicTacToe
+            gameId = {this.props.routeParams.gameId}
             gameBoard={this.state.gameBoard}
             turn={this.state.turn}
             winner={this.state.winner} />
@@ -59,7 +59,7 @@ const TicTacToe = React.createClass({
   mixins: [ReactFireMixin],
 
   componentWillMount() {
-    let ref = new Firebase('https://myoung-tic-tac-toe.firebaseio.com/games/' + uuid.v4());
+    let ref = new Firebase('https://myoung-tic-tac-toe.firebaseio.com/games/' + this.props.gameId);
     this.bindAsObject(ref, 'game');
   },
 
