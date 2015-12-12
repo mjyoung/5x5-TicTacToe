@@ -40,7 +40,6 @@ class TicTacToeStore {
   }
 
   handleResetGame() {
-    console.log('reset');
     this.setState({
       gameBoard: [
         ['', '', '', '', ''],

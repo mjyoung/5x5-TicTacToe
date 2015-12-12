@@ -8,14 +8,11 @@ import {
   Route,
   IndexRoute
 } from 'react-router';
-import uuid from 'node-uuid';
 
 import App from './components/App/App.js';
 import TicTacToeContainer from './components/TicTacToe/TicTacToeContainer.js';
 import StatsContainer from './components/Stats/Stats.js';
 import './styles/resets.scss';
-
-console.log(uuid.v4());
 
 ReactDOM.render(
   <Router history={createBrowserHistory()}>
