@@ -4,6 +4,7 @@
   "description": "5x5 Tic-Tac-Toe",
   "scripts": {
     "start": "node server.js",
+    "build": "webpack --config webpack.dist.config.js",
     "lint": "eslint src"
   },
   "author": "Michael Young <michaeljy@gmail.com> (http://github.com/mjyoung)",
