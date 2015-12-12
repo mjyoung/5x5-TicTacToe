@@ -19,7 +19,9 @@ https://myoung-tic-tac-toe.firebaseapp.com/
 3. `npm start`
 4. Open browser to `http://localhost:1337/`
 
-###
+### How to build for deploying
+
+1. `npm run build`
 
 ### Technology Stack
 
