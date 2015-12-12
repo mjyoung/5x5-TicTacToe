@@ -1,5 +1,7 @@
 # 5x5 Tic-Tac-Toe
 
+https://myoung-tic-tac-toe.firebaseapp.com/
+
 ### Features
 
 - Indicates whose turn it currently is.
@@ -8,7 +10,7 @@
 - Can play on one computer/browser, or multiple computers/browsers. Synced with Firebase.
 - Can return to an in-progress game at anytime using the unique game ID. <br>
     * Games are automatically saved to Firebase after every turn.
-    * Example: http://localhost:1337/games/38bb63bb-a2cb-4ff2-ad8d-ef8d14ae797f
+    * Example: https://myoung-tic-tac-toe.firebaseapp.com/games/38bb63bb-a2cb-4ff2-ad8d-ef8d14ae797f
 
 ### How to run locally
 
