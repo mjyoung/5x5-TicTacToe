@@ -19,6 +19,8 @@ https://myoung-tic-tac-toe.firebaseapp.com/
 3. `npm start`
 4. Open browser to `http://localhost:1337/`
 
+###
+
 ### Technology Stack
 
 #### Backend
@@ -28,7 +30,7 @@ https://myoung-tic-tac-toe.firebaseapp.com/
 #### Frontend
 
 - React, React Router, Alt
-- Webpack with hot reloading
+- Webpack with hot reloading (separate configs for dev/prod)
 - ES6 with Babel
 - SCSS
 - ESLint
