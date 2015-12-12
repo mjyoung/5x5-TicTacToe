@@ -1,5 +1,15 @@
 # 5x5 Tic-Tac-Toe
 
+### Features
+
+- Indicates whose turn it currently is.
+- Indicates winner when there is one.
+- Implemented Firebase as a BaaS for persisting data.
+- Can play on one computer/browser, or multiple computers/browsers. Synced with Firebase.
+- Can return to an in-progress game at anytime using the unique game ID. <br>
+    * Games are automatically saved to Firebase after every turn.
+    * Example: http://localhost:1337/games/38bb63bb-a2cb-4ff2-ad8d-ef8d14ae797f
+
 ### How to run locally
 
 1. Clone down this repo
@@ -42,7 +52,7 @@
 - Using the Block-Element-Modifier (BEM) naming convention for CSS classes
 
 ### TODO
-- Implement Firebase as a BaaS (partially implemented -- currently saving completed game boards)
+
 - Tests -- unit tests with mocha/chai, functional tests with mocha/casperjs
 - Stats -- show how many times X / O have won historically
 - MSH colors/styles

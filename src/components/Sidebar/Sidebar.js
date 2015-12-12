@@ -28,7 +28,7 @@ const Sidebar = React.createClass({
           header={header}
           docked={true} >
           <Link to="/" activeClassName="active">
-            <MenuItem index={0} className="Sidebar-menuItem">Home</MenuItem>
+            <MenuItem index={0} className="Sidebar-menuItem">New Game</MenuItem>
           </Link>
           <Link to="/stats" activeClassName="active">
             <MenuItem index={1} className="Sidebar-menuItem">Stats</MenuItem>
