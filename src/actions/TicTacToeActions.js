@@ -5,22 +5,19 @@ class TicTacToeActions {
     this.generateActions(
       'getAllGames',
       'createGame',
-      'declareWinner',
-      'setCurrentGame'
+      'setCurrentGame',
+      'setGameBoard',
+      'updateWinner',
+      'updateTurn',
+      'resetGame'
     );
   }
 
-  updateTurn(turn) {
-    let nextTurn = 'o';
-    if (turn === 'o') {
-      nextTurn = 'x';
-    }
-    return nextTurn;
-  }
-
-  updateGameBoard(gameBoard, selectedSquare) {
+  updateGameBoard(gameBoard, selectedSquare = null) {
     let newGameBoard = gameBoard;
-    newGameBoard[selectedSquare.row][selectedSquare.column] = selectedSquare.turn;
+    if (selectedSquare) {
+      newGameBoard[selectedSquare.row][selectedSquare.column] = selectedSquare.turn;
+    }
     return newGameBoard;
   }
 }

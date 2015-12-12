@@ -1,73 +1,40 @@
 import React from 'react';
-import AltContainer from 'alt-container';
-import TicTacToeStore from '../../stores/TicTacToeStore.js';
 import TicTacToeActions from '../../actions/TicTacToeActions.js';
-import TicTacToeNewGameOverlay from './TicTacToeNewGameOverlay.js';
 import _ from 'lodash';
 import Firebase from 'firebase';
 import ReactFireMixin from 'reactfire';
 
 import './TicTacToe.scss';
 
-const TicTacToeContainer = React.createClass({
-  getInitialState() {
-    let ticTacToeStoreState = TicTacToeStore.getState();
-    return {
-      gameBoard: ticTacToeStoreState.gameBoard,
-      turn: ticTacToeStoreState.turn,
-      winner: ticTacToeStoreState.winner
-    };
-  },
-
-  componentWillMount() {
-    TicTacToeActions.setCurrentGame(this.props.routeParams.gameId);
-  },
-
-  componentDidMount() {
-    TicTacToeStore.listen(this.onChange);
-  },
-
-  onChange(state) {
-    this.setState({
-      gameBoard: state.gameBoard,
-      turn: state.turn,
-      winner: state.winner
-    })
-  },
-
-  render() {
-    let ticTacToeNewGameOverlay;
-    if (this.props.route.status === 'none') {
-      ticTacToeNewGameOverlay = <TicTacToeNewGameOverlay />;
-    }
-    return (
-      <AltContainer store={TicTacToeStore}>
-        <div>
-          {ticTacToeNewGameOverlay}
-          <TicTacToe
-            gameId = {this.props.routeParams.gameId}
-            gameBoard={this.state.gameBoard}
-            turn={this.state.turn}
-            winner={this.state.winner} />
-        </div>
-      </AltContainer>
-    )
-  }
-});
-
+/*eslint-disable no-unused-vars */
 const TicTacToe = React.createClass({
   mixins: [ReactFireMixin],
 
   componentWillMount() {
-    let ref = new Firebase('https://myoung-tic-tac-toe.firebaseio.com/games/' + this.props.gameId);
-    this.bindAsObject(ref, 'game');
+    if (this.props.gameId) {
+      let ref = new Firebase('https://myoung-tic-tac-toe.firebaseio.com/games/' + this.props.gameId);
+      this.bindAsObject(ref, 'game');
+    }
   },
 
-  componentDidMount() {
-    console.info('TicTacToe props', this.props);
+  componentWillUpdate(nextProps, nextState) {
+    if (!nextState) {
+      if (this.props.gameId) {
+        let ref = new Firebase('https://myoung-tic-tac-toe.firebaseio.com/games/' + this.props.gameId);
+        this.bindAsObject(ref, 'game');
+      }
+      return;
+    }
+    if (nextState.game.gameBoard === undefined || _.isEqual(this.props.gameBoard, nextState.game.gameBoard)) {
+    } else {
+      TicTacToeActions.updateGameBoard(nextState.game.gameBoard);
+      TicTacToeActions.updateTurn(nextState.game.turn);
+      TicTacToeActions.updateWinner(nextState.game.winner);
+    }
   },
 
   checkWinner(selectedSquare) {
+    let winner = false;
     let lastMove = selectedSquare.turn;
     let gameBoard = this.props.gameBoard;
     let countMatchRow = 0,
@@ -109,15 +76,11 @@ const TicTacToe = React.createClass({
       countMatchRow === 5 || countMatchColumn === 5 ||
       countMatchDiagonal === 5 || countMatchDiagonal2 === 5
     ) {
+      winner = true;
       console.info('WINNER!', lastMove);
-      this.firebaseRefs.game.set({
-        gameBoard: this.props.gameBoard,
-        winner: lastMove,
-        status: 'finished'
-      });
-      TicTacToeActions.declareWinner(lastMove);
+      TicTacToeActions.updateWinner(lastMove);
     }
-
+    return winner;
   },
 
   handleSquareClick (ev) {
@@ -131,14 +94,40 @@ const TicTacToe = React.createClass({
     };
     TicTacToeActions.updateGameBoard(this.props.gameBoard, selectedSquare);
 
-    this.checkWinner(selectedSquare);
-
-    TicTacToeActions.updateTurn(this.props.turn);
+    let isWinner = this.checkWinner(selectedSquare);
+    if (isWinner) {
+      console.info('there is a winner');
+      this.firebaseRefs.game.set({
+        gameBoard: this.props.gameBoard,
+        winner: this.props.turn,
+        status: 'finished'
+      });
+    } else {
+      let nextTurn = 'o';
+      if (this.props.turn === 'o') {
+        nextTurn = 'x';
+      }
+      this.firebaseRefs.game.set({
+        gameBoard: this.props.gameBoard,
+        turn: nextTurn,
+        winner: null,
+        status: 'in progress'
+      });
+      TicTacToeActions.updateTurn(nextTurn);
+    }
   },
 
   render() {
     let gameBoard = this.props.gameBoard;
-    let turn = this.props.turn;
+    let turn = null;
+    if (this.props.turn) {
+      turn = 'It is ' + this.props.turn + '\'s turn';
+    }
+    let winner = null;
+    if (this.props.winner) {
+      winner = 'Winner: ' + this.props.winner;
+    }
+
     let gameBoardRowsHtml = [];
     _(gameBoard).forEach((row, rowIndex) => {
       _(row).forEach((val, valIndex) => {
@@ -163,10 +152,10 @@ const TicTacToe = React.createClass({
     return (
       <div className="TicTacToe">
         <div className="TicTacToe-turn">
-          It is {turn}'s turn.
+          {turn}
         </div>
         <div>
-          Winner: {this.props.winner}
+          {winner}
         </div>
         <div className="TicTacToe-gameBoard">
           <ul>
@@ -177,5 +166,6 @@ const TicTacToe = React.createClass({
     );
   }
 });
+/*eslint-enable no-unused-vars */
 
-module.exports = TicTacToeContainer;
+module.exports = TicTacToe;

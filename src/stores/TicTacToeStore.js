@@ -4,11 +4,11 @@ import TicTacToeActions from '../actions/TicTacToeActions.js';
 class TicTacToeStore {
   constructor() {
     this.gameBoard = [
-      [null, null, null, null, null],
-      [null, null, null, null, null],
-      [null, null, null, null, null],
-      [null, null, null, null, null],
-      [null, null, null, null, null]
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', '']
     ];
     this.turn = 'o';
     this.winner = '';
@@ -18,7 +18,8 @@ class TicTacToeStore {
       handleSetCurrentGame: TicTacToeActions.SET_CURRENT_GAME,
       handleUpdateGameBoard: TicTacToeActions.UPDATE_GAME_BOARD,
       handleUpdateTurn: TicTacToeActions.UPDATE_TURN,
-      handleDeclareWinner: TicTacToeActions.DECLARE_WINNER
+      handleUpdateWinner: TicTacToeActions.UPDATE_WINNER,
+      handleResetGame: TicTacToeActions.RESET_GAME
     });
   }
 
@@ -34,8 +35,24 @@ class TicTacToeStore {
     this.setState({turn: nextTurn});
   }
 
-  handleDeclareWinner(winner) {
-    this.setState({winner:  winner})
+  handleUpdateWinner(winner) {
+    this.setState({winner: winner})
+  }
+
+  handleResetGame() {
+    console.log('reset');
+    this.setState({
+      gameBoard: [
+        ['', '', '', '', ''],
+        ['', '', '', '', ''],
+        ['', '', '', '', ''],
+        ['', '', '', '', ''],
+        ['', '', '', '', '']
+      ],
+      turn: 'o',
+      winner: '',
+      currentGame: null
+    })
   }
 }
 

@@ -11,7 +11,7 @@ import {
 import uuid from 'node-uuid';
 
 import App from './components/App/App.js';
-import TicTacToeContainer from './components/TicTacToe/TicTacToe.js';
+import TicTacToeContainer from './components/TicTacToe/TicTacToeContainer.js';
 import StatsContainer from './components/Stats/Stats.js';
 import './styles/resets.scss';
 
