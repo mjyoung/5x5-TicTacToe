@@ -1,36 +1,15 @@
 import React from 'react';
-import AltContainer from 'alt-container';
-import TicTacToeStore from '../../stores/TicTacToeStore.js';
-
-const StatsContainer = React.createClass({
-  getInitialState() {
-    let ticTacToeStoreState = TicTacToeStore.getState();
-    return {
-      gameBoard: ticTacToeStoreState.gameBoard,
-      turn: ticTacToeStoreState.turn,
-      winner: ticTacToeStoreState.winner
-    };
-  },
-
-  render() {
-    return (
-      <AltContainer store={TicTacToeStore}>
-        <div>
-          <Stats />
-        </div>
-      </AltContainer>
-    )
-  }
-});
 
 const Stats = React.createClass({
   render() {
+    console.info('stats props', this.props);
     return (
       <div className="Stats">
-        Stats
+        <h1>Stats</h1>
+        Total Games Played: {this.props.calculatedStats.totalGames}
       </div>
     );
   }
 });
 
-module.exports = StatsContainer;
+module.exports = Stats;

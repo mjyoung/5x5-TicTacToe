@@ -11,7 +11,7 @@ import {
 
 import App from './components/App/App.js';
 import TicTacToeContainer from './components/TicTacToe/TicTacToeContainer.js';
-import StatsContainer from './components/Stats/Stats.js';
+import StatsContainer from './components/Stats/StatsContainer.js';
 import './styles/resets.scss';
 
 ReactDOM.render(

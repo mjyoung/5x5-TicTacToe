@@ -111,14 +111,13 @@ const TicTacToe = React.createClass({
     TicTacToeActions.updateGameBoard(this.props.gameBoard, selectedSquare);
     let checkWinnerResults = this.checkWinner(selectedSquare);
     if (checkWinnerResults.winner) {
-      console.log('this.props', this.props);
-      console.log('this.state',  this.state);
-      console.log(checkWinnerResults);
       this.firebaseRefs.game.set({
+        _id: this.props.gameId,
         gameBoard: this.props.gameBoard,
         winner: this.props.turn,
         winningSquares: checkWinnerResults.winningSquares,
-        status: 'finished'
+        status: 'finished',
+        lastModified: Firebase.ServerValue.TIMESTAMP
       });
     } else {
       let nextTurn = 'o';
@@ -126,11 +125,13 @@ const TicTacToe = React.createClass({
         nextTurn = 'x';
       }
       this.firebaseRefs.game.set({
+        _id: this.props.gameId,
         gameBoard: this.props.gameBoard,
         turn: nextTurn,
         winner: null,
         winningSquares: null,
-        status: 'in progress'
+        status: 'in progress',
+        lastModified: Firebase.ServerValue.TIMESTAMP
       });
       TicTacToeActions.updateTurn(nextTurn);
     }

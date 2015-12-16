@@ -10,7 +10,9 @@ class TicTacToeActions {
       'updateWinner',
       'updateTurn',
       'updateWinningSquares',
-      'resetGame'
+      'resetGame',
+      'updateGameStats',
+      'calculateGameStats'
     );
   }
 

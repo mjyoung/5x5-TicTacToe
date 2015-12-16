@@ -14,6 +14,7 @@ class TicTacToeStore {
     this.winner = '';
     this.winningSquares = [];
     this.currentGame = null;
+    this.gameStats = {};
 
     this.bindListeners({
       handleSetCurrentGame: TicTacToeActions.SET_CURRENT_GAME,
@@ -21,7 +22,8 @@ class TicTacToeStore {
       handleUpdateTurn: TicTacToeActions.UPDATE_TURN,
       handleUpdateWinner: TicTacToeActions.UPDATE_WINNER,
       handleUpdateWinningSquares: TicTacToeActions.UPDATE_WINNING_SQUARES,
-      handleResetGame: TicTacToeActions.RESET_GAME
+      handleResetGame: TicTacToeActions.RESET_GAME,
+      handleUpdateGameStats: TicTacToeActions.UPDATE_GAME_STATS
     });
   }
 
@@ -59,6 +61,10 @@ class TicTacToeStore {
       winningSquares: [],
       currentGame: null
     })
+  }
+
+  handleUpdateGameStats(gameStats) {
+    this.setState({gameStats: gameStats});
   }
 }
 
