@@ -10,7 +10,7 @@ https://myoung-tic-tac-toe.firebaseapp.com/
 - Can play on one computer/browser, or multiple computers/browsers. Synced with Firebase.
 - Can return to an in-progress game at anytime using the unique game ID. <br>
     * Games are automatically saved to Firebase after every turn.
-    * Example: https://myoung-tic-tac-toe.firebaseapp.com/games/2599b96f-e928-4be3-bc04-cd5d49c17c30
+    * Example: https://myoung-tic-tac-toe.firebaseapp.com/games/77d46c40-033c-4665-9f09-2901fad982c6
 - Can look at some stats at `/stats/`
 
 ### How to run locally
