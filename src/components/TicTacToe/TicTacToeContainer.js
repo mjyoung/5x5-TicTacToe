@@ -55,6 +55,7 @@ const TicTacToeContainer = React.createClass({
           {ticTacToeNewGameOverlay}
           <TicTacToe key={this.props.routeParams.gameId}
             gameId={this.props.routeParams.gameId}
+            status={this.props.route.status}
             gameBoard={this.state.gameBoard}
             turn={this.state.turn}
             winner={this.state.winner}

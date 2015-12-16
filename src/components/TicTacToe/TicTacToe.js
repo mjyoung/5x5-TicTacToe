@@ -137,10 +137,9 @@ const TicTacToe = React.createClass({
   },
 
   render() {
-    console.info(this.props.winningSquares);
     let gameBoard = this.props.gameBoard;
     let turn = null;
-    if (this.props.turn) {
+    if (this.props.turn && this.props.status !== 'none' && !this.props.winner) {
       turn = 'It is ' + this.props.turn + '\'s turn';
     }
     let winner = null;
