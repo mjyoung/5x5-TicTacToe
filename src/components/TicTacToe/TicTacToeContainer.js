@@ -11,7 +11,8 @@ const TicTacToeContainer = React.createClass({
     return {
       gameBoard: ticTacToeStoreState.gameBoard,
       turn: ticTacToeStoreState.turn,
-      winner: ticTacToeStoreState.winner
+      winner: ticTacToeStoreState.winner,
+      winningSquares: ticTacToeStoreState.winningSquares
     };
   },
 
@@ -37,7 +38,8 @@ const TicTacToeContainer = React.createClass({
       this.setState({
         gameBoard: state.gameBoard,
         turn: state.turn,
-        winner: state.winner
+        winner: state.winner,
+        winningSquares: state.winningSquares
       });
     }
   },
@@ -55,7 +57,8 @@ const TicTacToeContainer = React.createClass({
             gameId={this.props.routeParams.gameId}
             gameBoard={this.state.gameBoard}
             turn={this.state.turn}
-            winner={this.state.winner} />
+            winner={this.state.winner}
+            winningSquares={this.state.winningSquares} />
         </div>
       </AltContainer>
     )

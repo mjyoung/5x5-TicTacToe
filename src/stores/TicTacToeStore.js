@@ -12,6 +12,7 @@ class TicTacToeStore {
     ];
     this.turn = 'o';
     this.winner = '';
+    this.winningSquares = [];
     this.currentGame = null;
 
     this.bindListeners({
@@ -19,6 +20,7 @@ class TicTacToeStore {
       handleUpdateGameBoard: TicTacToeActions.UPDATE_GAME_BOARD,
       handleUpdateTurn: TicTacToeActions.UPDATE_TURN,
       handleUpdateWinner: TicTacToeActions.UPDATE_WINNER,
+      handleUpdateWinningSquares: TicTacToeActions.UPDATE_WINNING_SQUARES,
       handleResetGame: TicTacToeActions.RESET_GAME
     });
   }
@@ -39,6 +41,10 @@ class TicTacToeStore {
     this.setState({winner: winner})
   }
 
+  handleUpdateWinningSquares(squares) {
+    this.setState({winningSquares: squares})
+  }
+
   handleResetGame() {
     this.setState({
       gameBoard: [
@@ -50,6 +56,7 @@ class TicTacToeStore {
       ],
       turn: 'o',
       winner: '',
+      winningSquares: [],
       currentGame: null
     })
   }

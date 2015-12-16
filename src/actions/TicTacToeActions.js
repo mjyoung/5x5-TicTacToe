@@ -9,6 +9,7 @@ class TicTacToeActions {
       'setGameBoard',
       'updateWinner',
       'updateTurn',
+      'updateWinningSquares',
       'resetGame'
     );
   }

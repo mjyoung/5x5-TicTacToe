@@ -30,6 +30,7 @@ const TicTacToe = React.createClass({
       TicTacToeActions.updateGameBoard(nextState.game.gameBoard);
       TicTacToeActions.updateTurn(nextState.game.turn);
       TicTacToeActions.updateWinner(nextState.game.winner);
+      TicTacToeActions.updateWinningSquares(nextState.game.winningSquares);
     }
   },
 
@@ -37,22 +38,22 @@ const TicTacToe = React.createClass({
     let winner = false;
     let lastMove = selectedSquare.turn;
     let gameBoard = this.props.gameBoard;
-    let countMatchRow = 0,
-      countMatchColumn = 0,
-      countMatchDiagonal = 0,
-      countMatchDiagonal2 = 0;
-
+    let arrMatchRow = [],
+      arrMatchColumn = [],
+      arrMatchDiagonal = [],
+      arrMatchDiagonal2 = [],
+      winningSquares = [];
     // check selected row
     for (var colIndex = 0; colIndex < 5; colIndex++) {
       if (gameBoard[selectedSquare.row][colIndex] === lastMove) {
-        countMatchRow += 1;
+        arrMatchRow.push([parseInt(selectedSquare.row, 10), colIndex]);
       }
     }
 
     // check selected column
     for (var rowIndex = 0; rowIndex < 5; rowIndex++) {
       if (gameBoard[rowIndex][selectedSquare.column] === lastMove) {
-        countMatchColumn += 1;
+        arrMatchColumn.push([rowIndex, parseInt(selectedSquare.column, 10)]);
       }
     }
 
@@ -60,7 +61,7 @@ const TicTacToe = React.createClass({
     if (selectedSquare.row === selectedSquare.column) {
       for (var index = 0; index < 5; index++) {
         if (gameBoard[index][index] === lastMove) {
-          countMatchDiagonal += 1;
+          arrMatchDiagonal.push([index, index]);
         }
       }
     }
@@ -68,23 +69,38 @@ const TicTacToe = React.createClass({
     // check other diagonal
     for (var index = 0; index < 5; index++) {
       if (gameBoard[index][4-index] === lastMove) {
-        countMatchDiagonal2 += 1;
+        arrMatchDiagonal2.push([index, 4-index]);
       }
     }
 
-    if (
-      countMatchRow === 5 || countMatchColumn === 5 ||
-      countMatchDiagonal === 5 || countMatchDiagonal2 === 5
-    ) {
+
+    if (arrMatchRow.length === 5) {
       winner = true;
-      console.info('WINNER!', lastMove);
       TicTacToeActions.updateWinner(lastMove);
+      TicTacToeActions.updateWinningSquares(arrMatchRow);
+      winningSquares = arrMatchRow;
+    } else if (arrMatchColumn.length === 5) {
+      winner = true;
+      TicTacToeActions.updateWinner(lastMove);
+      TicTacToeActions.updateWinningSquares(arrMatchColumn);
+      winningSquares = arrMatchColumn;
+    } else if (arrMatchDiagonal.length === 5) {
+      winner = true;
+      TicTacToeActions.updateWinner(lastMove);
+      TicTacToeActions.updateWinningSquares(arrMatchDiagonal);
+      winningSquares = arrMatchDiagonal;
+    } else if (arrMatchDiagonal2.length === 5) {
+      winner = true;
+      TicTacToeActions.updateWinner(lastMove);
+      TicTacToeActions.updateWinningSquares(arrMatchDiagonal2);
+      winningSquares = arrMatchDiagonal2;
     }
-    return winner;
+    return { winner: winner, winningSquares: winningSquares};
+
   },
 
   handleSquareClick (ev) {
-    if (ev.currentTarget.dataset.val) {
+    if (this.props.winner || ev.currentTarget.dataset.val) {
       return;
     }
     let selectedSquare = {
@@ -93,13 +109,15 @@ const TicTacToe = React.createClass({
       turn: this.props.turn
     };
     TicTacToeActions.updateGameBoard(this.props.gameBoard, selectedSquare);
-
-    let isWinner = this.checkWinner(selectedSquare);
-    if (isWinner) {
-      console.info('there is a winner');
+    let checkWinnerResults = this.checkWinner(selectedSquare);
+    if (checkWinnerResults.winner) {
+      console.log('this.props', this.props);
+      console.log('this.state',  this.state);
+      console.log(checkWinnerResults);
       this.firebaseRefs.game.set({
         gameBoard: this.props.gameBoard,
         winner: this.props.turn,
+        winningSquares: checkWinnerResults.winningSquares,
         status: 'finished'
       });
     } else {
@@ -111,6 +129,7 @@ const TicTacToe = React.createClass({
         gameBoard: this.props.gameBoard,
         turn: nextTurn,
         winner: null,
+        winningSquares: null,
         status: 'in progress'
       });
       TicTacToeActions.updateTurn(nextTurn);
@@ -118,6 +137,7 @@ const TicTacToe = React.createClass({
   },
 
   render() {
+    console.info(this.props.winningSquares);
     let gameBoard = this.props.gameBoard;
     let turn = null;
     if (this.props.turn) {
@@ -137,6 +157,9 @@ const TicTacToe = React.createClass({
           squareClassName = 'TicTacToe-square TicTacToe-square--x';
         } else if (val === 'o') {
           squareClassName = 'TicTacToe-square TicTacToe-square--o';
+        }
+        if (_.some(this.props.winningSquares, key)) {
+          squareClassName += ' TicTacToe-square--winner';
         }
         gameBoardRowsHtml.push(
           <li className={squareClassName}
